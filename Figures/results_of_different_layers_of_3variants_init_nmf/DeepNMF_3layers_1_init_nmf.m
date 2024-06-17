@@ -2,28 +2,7 @@
 
 clear;
 clc
-% '3sources3vbig' 'bbcsport4vbig' 'citeseer','cora','cornell',...
-% 'handwritten','texas','washington','wisconsin','buaa90'
-% test1002v skin1002v
-% adni3 adni3_9v adni3_6v adni3_4v 【adni3_5v】
-% adni3_6v2 adni3_5v2 adni3_5v3 adni3_7v adni3_4v2 adni3_4v3
-% adni3_5v4 adni3_5v5 adni3_6v3 adni3_5v6 adni3_5v7
-% adni3_6v4 adni3_5v9 adni3_5v10 adni3_5v11 adni3_5v12
-% adni3_5v13 adni3_5v14 adni3_5v15 adni3_5v16 adni3_6v5
-% breast7v_7v breast7v_6v breast7v_6v2 breast7v_5v2 breast7v_5v3
-% breast7v_5v4 【breast7v_5v5】 breast10v_5v breast10v_5v2
-% breast7v_5v6 breast7v_4v breast8v_6v
-%  msrcv1 yalea wikipa
-% 'yale','caltech2v','caltech6v','skin100','test100','ecg','bankuai'
-% ,'BDGP4v','caltech20','caltech20p50','BDGP4v200'
-% dataname_list = {'wisconsin','washington'};
-% dataname_list = {'yalea','3sources3vbig'};
-dataname_list = {'wisconsin'};
-% dataname_list = {'yalea'};
-% dataname_list = {'cornell','wisconsin','washington','handwritten'};
-% dataname_list = {'wisconsin','washington','handwritten','cora'};
-% dataname_list = {'yalea','adni3_5v','3sources3vbig','msrcv1'};%'3sources3vbig','bbcsport4vbig'
-% dataname_list = {'bbcsport4vbig','bankuai3v_2of3','3sources3vbig','caltech6v'};
+dataname_list = {'yalea'};% wisconsin msrcv1
 for idata = 1:length(dataname_list)
     % Dataname = 'caltech6v';
     Dataname = dataname_list{idata};
@@ -109,9 +88,9 @@ for idata = 1:length(dataname_list)
                             X1 = abs(X{iv}');% + 1e-1*rand(size(X{iv}))'
                             X1 = NormalizeFea(X1,1);
                             % % % %                         X1 = normX(X1);
-                            X1(ind_0,:) = [];% 去掉 缺失样本
+                            X1(ind_0,:) = [];% 鍘绘帀 缂哄け鏍锋湰
                             Y{iv} = X1;
-                            % ------------- 构造缺失视角的索引矩阵 ----------- %
+                            % ------------- 鏋勯�犵己澶辫瑙掔殑绱㈠紩鐭╅樀 ----------- %
                             W0 = eye(numInst);
                             W0(ind_0,:) = [];
                             G{iv} = W0;
@@ -202,7 +181,7 @@ for idata = 1:length(dataname_list)
                     clear ACC NMI PUR ARI Fscore Precision Recall
                 end
             end
-            root = ['F:\我的工作空间\11-imcomplete-mv-deepIMC\',...
+            root = ['F:\鎴戠殑宸ヤ綔绌洪棿\11-imcomplete-mv-deepIMC\',...
                 'Figures\results_of_different_layers_of_3variants_init_nmf'];
             path = [root,'\DeepNMF\',Dataname];
             if ~exist(path,'dir')
